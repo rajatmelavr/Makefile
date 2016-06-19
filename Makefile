@@ -1,12 +1,23 @@
-#This is first time make file
+# Makefile for Calculator Project
+# Author: Raj Prajapati
+#------------------------------------------------
 
-#Flags 
-CXXFLAGS= -Wall -Wextra -Werror
-#Compiler
-CXX= g++
+export CALCULATOR_BASE_DIR=$(shell pwd)
 
-#Creation of Executable, Don not forget to give the dependencies 
-calci: Add.hpp Multiply.hpp Divide.hpp Sub.hpp
-	${CXX} ${CXXFLAGS} main.cpp Add.cpp Multiply.cpp Divide.cpp Sub.cpp -o calci
+include $(CALCULATOR_BASE_DIR)/mkconfig
+
+build:
+	make -C src calci
+
 clean:
-	rm -rf *.o calci
+	make -C src clean
+
+doc:
+	cp src/MainPage.dpt src/MainPage.c
+	VER="$(grep app_version src/Version.cpp | grep -oP '"\K[^"\047]+(?=["\047])')"
+	DATE="$(date +"%m-%d-%Y")"
+	COMP="$($CXX -v 2>&1 | grep 'gcc version')"
+	sed -i "s/%APP_VERSION%/$VER/" src/MainPage.c
+	sed -i "s/%DATE%/$DATE/" src/MainPage.c
+	sed -i "s/%COMPILER_VERSION%/$COMP/" src/MainPage.c
+	doxygen doxycfg

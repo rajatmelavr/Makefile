@@ -7,3 +7,12 @@ This Project is focused in teaching the different way of writing the make file a
 Calculator is used for addidtion, division , multiplication and substraction for two numbers.
 Focus is given here for the makefile.
 Its guide from normal "g++" compiling from command line to writing professional Makefile
+
+####Compiling
+The Steps for building calci:
+
+    make clean -> Cleans the project
+    mk build -> Builds the project
+    mk doc -> Create the Doxygen Document
+
+
