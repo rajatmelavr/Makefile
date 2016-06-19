@@ -1,13 +1,18 @@
 # Makefile for Calculator
 # Author: Raj Prajapati
 #------------------------------------------------
-#Description : This Makefile is creating the objects with just two lines of code
-#			   and after that its creating the executable using special macro
+#Description : 1. This Makefile is creating the objects with just two lines of code
+#			      and after that its creating the executable using special macro
+#			   2. Breaked line (using "\") for objects
 
+OBJ=\
+	main.o\
+	Add.o\
+	Multiply.o\
+	Divide.o\
+	Sub.o\
 
-OBJ= main.o Add.o Multiply.o Divide.o Sub.o
-
-#Common implicit rule is for the construction of .o (object) files out of .cpp (source files).
+#implicit rulefor the construction of .o (object) files out of .cpp (source files).
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<
 
